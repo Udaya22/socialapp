@@ -1,0 +1,4 @@
+<a href="{% url 'groups:single' pk=group.pk %}"><h3>{{ group.name }}</h3></a>
+<h4>{{group.description}}</h4>
+<small>{{ group.members.count }} member{{ group.members.count|pluralize }}</small>
+<small>{{ group.posts.count }} post{{ group.posts.count|pluralize }}</small>

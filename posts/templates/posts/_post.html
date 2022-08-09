@@ -1,0 +1,17 @@
+<tr>
+    <td>
+        <strong>{{post.user.username}}</strong>
+    
+        {% if post.group is not None %}
+        to <strong>{{post.group}}</strong>
+        {% endif %}
+        </br>
+        <strong>{{post.created_at}}</strong>
+        <h3>{{post.message}}</h3></br>
+        {% if post.user == user %}
+        <a style=text-decoration:none;color:red ; href="{% url 'posts:delete' post.pk %}">Delete</a>
+        {% endif %}
+    </td>
+</tr>
+
+

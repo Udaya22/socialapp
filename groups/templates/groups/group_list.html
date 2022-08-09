@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-md-4">
+		<div class="content">
+			{% if user.is_authenticated %}
+			<h2>
+				Hola
+				<a style="text-decoration:none ;" href="{% url 'posts:for_user' username=user.username %}">@{{user.username }}</a>!
+			</h2>
+	
+		{% endif %}
+	
+				<h3>Welcome to the Groups Page!</h3>
+		</div>
+		{% if user.is_authenticated %}
+		<a href="{% url 'groups:create' %}" class="btn btn-warning" role="button"><span class="fa fa-plus"></span> Create New Group!</a>
+		{% endif %}
+	</div>
+	<div class="col-md-6">
+		{% if group_list %}
+		<table class="table table-striped">
+			<tbody>
+				{% for group in group_list %}
+					<tr>
+						<td>
+							{% include 'groups/_group.html' %}
+						</td>
+					</tr>
+
+				{% endfor %}
+			</tbody>
+
+		</table>
+		{% else %}
+			<h3>No group to list, please create a group to post</h3>
+		{% endif %}
+		
+	</div>
+</div>
+
+{% endblock %}

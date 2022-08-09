@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load bootstrap5 %}
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4">
+    <h2>Welcome {{user.username}}</h2>
+    <h2>Post history</h2>
+
+</div>
+
+<div class="col-md-6">
+    <a href="{% url 'posts:create' %}" class="btn btn-success" role="button"><span class="fa fa-plus"></span> New Post</a>
+    <br><br>
+    {% if post_list %}
+        <table class="table table-striped">
+            <tbody>
+                {% for post in post_list %}
+                    {% include 'posts/_post.html' %}
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2>You have not posted anything</h2>
+        <h4>Click <strong>New Post </strong>to share whats on your mind</h4>
+    {% endif %}
+
+</div>
+</div>
+</div>
+{% endblock %}

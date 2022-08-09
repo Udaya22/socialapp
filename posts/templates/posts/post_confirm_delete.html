@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load bootstrap5 %}
+<form method="POST">
+	{% csrf_token %}
+	{{post.user.username}}
+	{% if post.group is not None %}
+	to <strong>{{post.group}}</strong>
+	{% endif %}
+	</br>
+	<strong>{{post.created_at}}</strong>
+	<h3>{{post.message}}</h3></br>
+	<input type="submit" value="Confirm Delete" class="btn btn-danger btn-large">
+	<a href="{% url 'posts:for_user' username=user.username %}" class="btn btn-light btn-large">Cancel</a>
+</form>
+{% endblock %}

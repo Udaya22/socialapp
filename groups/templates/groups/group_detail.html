@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <div class="content">
+        {% include 'groups/_group.html' %}
+        <br><br>
+
+        {% if user in group.members.all %}
+        <a href="{% url 'groups:group_post' pk=group.pk %}" class="btn btn-primary btn-md">Post to this group</a>
+        <br><br>
+        <a href="{% url 'groups:leave' pk=group.pk %}" class="btn btn-large btn-warning">Leave</a>
+
+        {% else %}
+        <h4>Join to post in this group</h4>
+        <a href="{% url 'groups:join' pk=group.pk %}" class="btn btn-large btn-success">Join</a>
+    
+        {% endif %}
+        </div>
+    </div>
+    
+<div class="col-md-6">
+    <div class="content">
+        {% if group.posts.count == 0 %}
+            <h3>No posts in this group</h3>
+        {% else %}
+            <table class="table table-striped">
+                <tbody>
+                    {% for post in group.posts.all %}
+                        {% include 'posts/_post.html' %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}
